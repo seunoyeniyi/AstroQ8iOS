@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Bold.ttf">
+            <string>Montserrat-Bold</string>
+        </array>
+        <array key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ReviewsCollectionViewCell" customModule="WhatsDownApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="333" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="333" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQd-dA-Z7J">
+                        <rect key="frame" x="0.0" y="0.0" width="333" height="100"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="vAg-fk-gtk">
+                                <rect key="frame" x="10" y="5" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="evx-nS-zeg"/>
+                                    <constraint firstAttribute="width" constant="50" id="rVo-iX-Hje"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3db-pN-D99" customClass="CosmosView" customModule="WhatsDownApp" customModuleProvider="target">
+                                <rect key="frame" x="70" y="5" width="100" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="JzW-xH-m1D"/>
+                                    <constraint firstAttribute="height" constant="20" id="j58-83-yHV"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="emptyColor">
+                                        <color key="value" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bh-Xp-cBM">
+                                <rect key="frame" x="70" y="40" width="253" height="50"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="11"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4US-pK-VKc">
+                                <rect key="frame" x="70" y="25" width="253" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" id="RCa-AD-CGc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="12"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4US-pK-VKc" firstAttribute="leading" secondItem="vAg-fk-gtk" secondAttribute="trailing" constant="10" id="2nQ-Uy-IsM"/>
+                            <constraint firstItem="3db-pN-D99" firstAttribute="top" secondItem="aQd-dA-Z7J" secondAttribute="top" constant="5" id="HBt-BF-X1U"/>
+                            <constraint firstAttribute="trailing" secondItem="2bh-Xp-cBM" secondAttribute="trailing" constant="10" id="OJv-Za-4Zr"/>
+                            <constraint firstItem="3db-pN-D99" firstAttribute="leading" secondItem="vAg-fk-gtk" secondAttribute="trailing" constant="10" id="PuK-UR-7rs"/>
+                            <constraint firstAttribute="bottom" secondItem="2bh-Xp-cBM" secondAttribute="bottom" constant="10" id="WQK-hv-he2"/>
+                            <constraint firstItem="4US-pK-VKc" firstAttribute="top" secondItem="3db-pN-D99" secondAttribute="bottom" id="eHd-Co-t9T"/>
+                            <constraint firstItem="2bh-Xp-cBM" firstAttribute="top" secondItem="4US-pK-VKc" secondAttribute="bottom" constant="5" id="eIm-bR-SvX"/>
+                            <constraint firstAttribute="trailing" secondItem="4US-pK-VKc" secondAttribute="trailing" constant="10" id="f1b-4U-OSk"/>
+                            <constraint firstItem="2bh-Xp-cBM" firstAttribute="leading" secondItem="vAg-fk-gtk" secondAttribute="trailing" constant="10" id="oL0-Xe-CAE"/>
+                            <constraint firstItem="vAg-fk-gtk" firstAttribute="top" secondItem="aQd-dA-Z7J" secondAttribute="top" constant="5" id="pFr-yw-COC"/>
+                            <constraint firstItem="vAg-fk-gtk" firstAttribute="leading" secondItem="aQd-dA-Z7J" secondAttribute="leading" constant="10" id="tz3-vL-Hh2"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="aQd-dA-Z7J" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="AjM-SH-cga"/>
+                <constraint firstItem="aQd-dA-Z7J" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Eaa-YI-00A"/>
+                <constraint firstAttribute="bottom" secondItem="aQd-dA-Z7J" secondAttribute="bottom" id="qpf-1j-B7Z"/>
+                <constraint firstAttribute="trailing" secondItem="aQd-dA-Z7J" secondAttribute="trailing" id="spq-ni-u5w"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="333" height="81"/>
+            <connections>
+                <outlet property="userComment" destination="2bh-Xp-cBM" id="X9H-z7-Wtz"/>
+                <outlet property="userImage" destination="vAg-fk-gtk" id="DNr-Wf-cna"/>
+                <outlet property="userRating" destination="3db-pN-D99" id="1Of-eS-bOV"/>
+                <outlet property="username" destination="4US-pK-VKc" id="WlU-R8-z6t"/>
+            </connections>
+            <point key="canvasLocation" x="226.5" y="74"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="default_avatar" width="800" height="800"/>
+    </resources>
+</document>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategoriesViewController" customModule="MyShirtEg" customModuleProvider="target">
+            <connections>
+                <outlet property="categoriesCollectionView" destination="dpX-EZ-c6Z" id="S33-MQ-A5k"/>
+                <outlet property="loadingActivity" destination="GLG-Eh-AWA" id="3AG-Xu-3xB"/>
+                <outlet property="loadingLabel" destination="dz0-R8-NE8" id="eY1-C4-Oiz"/>
+                <outlet property="loadingTryAgain" destination="RXc-vL-fv2" id="SAn-sC-oSX"/>
+                <outlet property="loadingView" destination="Jzi-4z-BuU" id="G7N-Fv-Wh6"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBq-ff-cLC">
+                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <color key="backgroundColor" name="White"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="barTintColor" name="White"/>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem title="Categories" id="KGZ-ai-dua">
+                            <barButtonItem key="leftBarButtonItem" image="icons8_back" id="0Z3-Ie-Ftr">
+                                <connections>
+                                    <action selector="backTapped:" destination="-1" id="mDi-tg-lgz"/>
+                                </connections>
+                            </barButtonItem>
+                            <rightBarButtonItems>
+                                <barButtonItem image="icons8_search_1" id="S7L-lH-8C9">
+                                    <connections>
+                                        <action selector="searchTapped:" destination="-1" id="IFS-F8-SfT"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem image="icons8_heart" id="R4j-pg-vTN">
+                                    <color key="tintColor" name="Black"/>
+                                    <connections>
+                                        <action selector="wishlistTapped:" destination="-1" id="EeD-vx-yUT"/>
+                                    </connections>
+                                </barButtonItem>
+                            </rightBarButtonItems>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="dpX-EZ-c6Z">
+                    <rect key="frame" x="0.0" y="69" width="375" height="598"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="14T-PF-GFa">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jzi-4z-BuU">
+                    <rect key="frame" x="0.0" y="65" width="375" height="602"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="GLG-Eh-AWA">
+                            <rect key="frame" x="169.5" y="202.5" width="37" height="37"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </activityIndicatorView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dz0-R8-NE8">
+                            <rect key="frame" x="150.5" y="244.5" width="75" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXc-vL-fv2">
+                            <rect key="frame" x="112.5" y="270.5" width="150" height="40"/>
+                            <color key="backgroundColor" name="Primary"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="GVS-an-5bZ"/>
+                                <constraint firstAttribute="width" constant="150" id="et5-pj-xnE"/>
+                            </constraints>
+                            <state key="normal" title="Try Again">
+                                <color key="titleColor" name="White"/>
+                            </state>
+                            <connections>
+                                <action selector="tryAgainTapped:" destination="-1" eventType="touchUpInside" id="V0Z-Ug-Lf1"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="GLG-Eh-AWA" firstAttribute="centerX" secondItem="Jzi-4z-BuU" secondAttribute="centerX" id="Mpd-Px-H4v"/>
+                        <constraint firstItem="RXc-vL-fv2" firstAttribute="top" secondItem="dz0-R8-NE8" secondAttribute="bottom" constant="5" id="NAr-3b-nRt"/>
+                        <constraint firstItem="GLG-Eh-AWA" firstAttribute="centerY" secondItem="Jzi-4z-BuU" secondAttribute="centerY" constant="-80" id="PlZ-jU-PoJ"/>
+                        <constraint firstItem="RXc-vL-fv2" firstAttribute="centerX" secondItem="Jzi-4z-BuU" secondAttribute="centerX" id="Zni-pK-TJP"/>
+                        <constraint firstItem="dz0-R8-NE8" firstAttribute="top" secondItem="GLG-Eh-AWA" secondAttribute="bottom" constant="5" id="i3J-co-QQ8"/>
+                        <constraint firstItem="dz0-R8-NE8" firstAttribute="centerX" secondItem="Jzi-4z-BuU" secondAttribute="centerX" id="nXf-BS-et9"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="pBq-ff-cLC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="1Kg-KZ-AV7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Jzi-4z-BuU" secondAttribute="trailing" id="6No-BA-Mpd"/>
+                <constraint firstItem="Jzi-4z-BuU" firstAttribute="top" secondItem="pBq-ff-cLC" secondAttribute="bottom" constant="1" id="7gY-aF-ngc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dpX-EZ-c6Z" secondAttribute="bottom" id="CW4-Bn-URc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Jzi-4z-BuU" secondAttribute="bottom" id="EEl-Nu-PVa"/>
+                <constraint firstItem="pBq-ff-cLC" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="FHX-Ku-nfz"/>
+                <constraint firstItem="pBq-ff-cLC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="QYQ-2b-dfa"/>
+                <constraint firstItem="dpX-EZ-c6Z" firstAttribute="top" secondItem="pBq-ff-cLC" secondAttribute="bottom" constant="5" id="Shc-yg-Q7d"/>
+                <constraint firstItem="Jzi-4z-BuU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="edR-M1-cKp"/>
+                <constraint firstItem="dpX-EZ-c6Z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="lMU-3h-znb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dpX-EZ-c6Z" secondAttribute="trailing" id="sss-E3-FLj"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icons8_back" width="20" height="20"/>
+        <image name="icons8_heart" width="20" height="20"/>
+        <image name="icons8_search_1" width="20" height="20"/>
+        <namedColor name="Black">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary">
+            <color red="0.024000000208616257" green="0.0040000001899898052" blue="0.0040000001899898052" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="White">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
