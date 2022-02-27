@@ -94,8 +94,8 @@
 		D62D329627A8D51E00C17349 /* ShippingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62D329427A8D51E00C17349 /* ShippingTableViewCell.swift */; };
 		D62D329727A8D51E00C17349 /* ShippingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D62D329527A8D51E00C17349 /* ShippingTableViewCell.xib */; };
 		D62D329B27B506FC00C17349 /* AddedToCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62D329A27B506FC00C17349 /* AddedToCartViewController.swift */; };
+		D643BED527CC02600077AB30 /* iTunesArtwork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D643BED427CC025E0077AB30 /* iTunesArtwork@3x.png */; };
 		D651757C27CABC5400064EB6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D651757B27CABC5400064EB6 /* GoogleService-Info.plist */; };
-		D651757E27CAC61800064EB6 /* iTunesArtwork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D651757D27CAC61800064EB6 /* iTunesArtwork@3x.png */; };
 		D6B0532B279621AD003BCC96 /* CosmoDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B0532A279621AD003BCC96 /* CosmoDistrib.swift */; };
 		D6B0532E27964AF1003BCC96 /* ReviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B0532C27964AF1003BCC96 /* ReviewsCollectionViewCell.swift */; };
 		D6B0532F27964AF1003BCC96 /* ReviewsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6B0532D27964AF1003BCC96 /* ReviewsCollectionViewCell.xib */; };
@@ -207,8 +207,8 @@
 		D62D329427A8D51E00C17349 /* ShippingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingTableViewCell.swift; sourceTree = "<group>"; };
 		D62D329527A8D51E00C17349 /* ShippingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShippingTableViewCell.xib; sourceTree = "<group>"; };
 		D62D329A27B506FC00C17349 /* AddedToCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedToCartViewController.swift; sourceTree = "<group>"; };
+		D643BED427CC025E0077AB30 /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@3x.png"; sourceTree = "<group>"; };
 		D651757B27CABC5400064EB6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D651757D27CAC61800064EB6 /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iTunesArtwork@3x.png"; path = "../../../Downloads/ic_launcher-621a8b42ca8ff/ios/iTunesArtwork@3x.png"; sourceTree = "<group>"; };
 		D6B053272795D1C6003BCC96 /* StepIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = StepIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6B053292795EC19003BCC96 /* Cosmos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Cosmos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6B0532A279621AD003BCC96 /* CosmoDistrib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmoDistrib.swift; sourceTree = "<group>"; };
@@ -288,6 +288,7 @@
 		D62AB7E027931ADC005FC71A /* App */ = {
 			isa = PBXGroup;
 			children = (
+				D643BED427CC025E0077AB30 /* iTunesArtwork@3x.png */,
 				D6C34AD427CAFBF500392A45 /* loading.gif */,
 				D651757B27CABC5400064EB6 /* GoogleService-Info.plist */,
 				D6B84D90279EFA13007DE753 /* Adapter */,
@@ -299,7 +300,6 @@
 				D62AB7EA27931ADC005FC71A /* Assets.xcassets */,
 				D62AB7F527931C7A005FC71A /* Colors.xcassets */,
 				D62AB7EF27931ADC005FC71A /* Info.plist */,
-				D651757D27CAC61800064EB6 /* iTunesArtwork@3x.png */,
 				D62AB7EC27931ADC005FC71A /* LaunchScreen.storyboard */,
 				D62AB7E727931ADC005FC71A /* Main.storyboard */,
 				D62AB8512793310E005FC71A /* MainViewController.swift */,
@@ -516,7 +516,6 @@
 				D62AB8762793310F005FC71A /* LoginViewController.xib in Resources */,
 				D60AEAF627C0F3C0006E6F5A /* LoadingViewController.xib in Resources */,
 				D6B053352796C9B6003BCC96 /* IntroViewController.xib in Resources */,
-				D651757E27CAC61800064EB6 /* iTunesArtwork@3x.png in Resources */,
 				D62AB8C427934347005FC71A /* Montserrat-Black.ttf in Resources */,
 				D62AB8C627934347005FC71A /* Montserrat-Bold.ttf in Resources */,
 				D62AB8742793310F005FC71A /* CheckoutAddressViewController.xib in Resources */,
@@ -535,6 +534,7 @@
 				D62AB7EB27931ADC005FC71A /* Assets.xcassets in Resources */,
 				D62AB8682793310F005FC71A /* ProductCardCollectionViewCell.xib in Resources */,
 				D62AB87E2793310F005FC71A /* ProductViewController.xib in Resources */,
+				D643BED527CC02600077AB30 /* iTunesArtwork@3x.png in Resources */,
 				D6EA4CA127952CFE00224A70 /* CategoriesCollectionViewCell.xib in Resources */,
 				D62AB85F2793310F005FC71A /* FilterViewController.xib in Resources */,
 				D62AB8642793310F005FC71A /* OrderItemsTableViewCell.xib in Resources */,
