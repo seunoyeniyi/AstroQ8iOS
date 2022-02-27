@@ -74,7 +74,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Category   " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vY-pN-SM3">
-                        <rect key="frame" x="0.0" y="155" width="58.5" height="14"/>
+                        <rect key="frame" x="0.0" y="155" width="52" height="14"/>
                         <color key="backgroundColor" name="Scondary"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" id="1pB-N2-n0a"/>
