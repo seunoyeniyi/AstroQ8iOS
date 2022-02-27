@@ -36,7 +36,7 @@ extension UIViewController {
         self.tabBarController?.tabBar.layer.borderColor = UIColor.gray.cgColor
         self.tabBarController?.tabBar.clipsToBounds = true
     }
-    
+    //header logo image
     func setupNavLogo(theNavigationItem: UINavigationItem) {
         let logoContainer = UIView(frame: CGRect(x: 0, y: 0, width:290, height: 43))
         let logo = UIImage(named: "Logo")
