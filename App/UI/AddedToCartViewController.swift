@@ -6,7 +6,6 @@
 //  Copyright © 2022 WhatsDown. All rights reserved.
 //
 
-import UIKit
 
 //
 //  AttributesDialogViewController.swift
