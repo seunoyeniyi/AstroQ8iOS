@@ -100,9 +100,9 @@ class OrderViewController: UIViewController {
         
         let url = Site.init().ORDER + self.orderID + "/" + userSession.ID;
         
-        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+        Alamofire.Session.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
 //                print(json)
                 if (json["code"].exists() && json["data"] == JSON.null) {
