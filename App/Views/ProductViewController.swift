@@ -547,7 +547,6 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
         return self.attributes.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.attributesTableView.dequeueReusableCell(withIdentifier: attributeCellReuseIdentifier) as! AttributeTableViewCell
         cell.titleLabel?.text = (self.attributes[indexPath.row]["label"] as? String)?.capitalizingFirstLetter()
@@ -564,6 +563,7 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.dropDown.isSearchEnable = false
+        
         
         var optionsString: Array<String> = []
         for option in cell.options {

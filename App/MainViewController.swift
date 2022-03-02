@@ -15,8 +15,10 @@ import PINRemoteImage
 class MainViewController: UIViewController {
     
     @IBOutlet var bannerCollectionView: UICollectionView!
-    @IBOutlet var productCollectionView: UICollectionView!
-    @IBOutlet var productCollectionViewHeightC: NSLayoutConstraint!
+//    @IBOutlet var productCollectionView: UICollectionView!
+//    @IBOutlet var productCollectionViewHeightC: NSLayoutConstraint!
+    @IBOutlet var categoriesGridCollectionView: UICollectionView!
+    @IBOutlet var categoriesGridCollectionViewHeightC: NSLayoutConstraint!
     @IBOutlet var bannerShimmer: ShimmerViewContainer!
     @IBOutlet var bannerRefreshBtn: UIButton!
     @IBOutlet var productsShimmer: ShimmerViewContainer!
@@ -74,6 +76,7 @@ class MainViewController: UIViewController {
     let videoBannerReuseIdentifier: String = "VideoBannerCollectionViewCell"
     
     let productReuseIdentifier: String = "ProductCardCollectionViewCell"
+    let categoryReuseIdentifier: String = "CategoriesGridCollectionViewCell"
     
     //banners arrays
     var banners: Array<Dictionary<String, String>> = []
@@ -85,6 +88,7 @@ class MainViewController: UIViewController {
     
     
     var products: Array<ProductObject> = []
+    var categories: Array<Dictionary<String, String>> = []
     
     var defaultPaged = 1
     var currentPaged: Int = 1
@@ -98,6 +102,8 @@ class MainViewController: UIViewController {
     var registerController = RegisterViewController()
     
     let theCart = AddToCart()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,14 +147,21 @@ class MainViewController: UIViewController {
         
         theCart.delegate = self
         
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: self.view.frame.size.width - 30, height: 265)
-        self.productCollectionView.collectionViewLayout = layout
-        let productCell = UINib(nibName: productReuseIdentifier, bundle: nil)
-        self.productCollectionView.register(productCell, forCellWithReuseIdentifier: productReuseIdentifier)
+        self.categoriesGridCollectionView.delegate = self
+        self.categoriesGridCollectionView.dataSource = self
         
-        self.productCollectionView.delegate = self
-        self.productCollectionView.dataSource = self
+//        let layout = UICollectionViewFlowLayout()
+//        layout.itemSize = CGSize(width: self.view.frame.size.width - 30, height: 265)
+//        self.productCollectionView.collectionViewLayout = layout
+//        let productCell = UINib(nibName: productReuseIdentifier, bundle: nil)
+//        self.productCollectionView.register(productCell, forCellWithReuseIdentifier: productReuseIdentifier)
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: self.view.frame.size.width - 25, height: 203)
+        self.categoriesGridCollectionView.collectionViewLayout = layout
+//
+//        self.productCollectionView.delegate = self
+//        self.productCollectionView.dataSource = self
         
         setupCartNotification()
         
@@ -186,9 +199,67 @@ class MainViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    
     func startView() {
         fetchAvailableBanners()
+        fetchCategories()
         fetchProducts(paged: defaultPaged, shim: true)
+    }
+    
+    func fetchCategories() {
+        if (!Connectivity.isConnectedToInternet) {
+            self.view.makeToast("Bad internet connection!")
+            self.categoriesGridCollectionViewHeightC.constant = 0
+            self.productsShimmer.isHidden = false
+            self.productsShimmer.stopShimmering()
+            self.productRefreshBtn.isHidden = false
+            return
+        }
+        
+        self.categoriesGridCollectionViewHeightC.constant = 0
+        
+        self.productsShimmer.isHidden = false
+        self.productsShimmer.startShimmering()
+        self.productRefreshBtn.isHidden = true
+        
+        
+        let url = Site.init().CATEGORIES + "?hide_empty=1&order_by=menu_order";
+        
+        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+            //check if the result has a value
+            if let json_result = response.result.value {
+                
+                let json = JSON(json_result)
+                self.categories = []
+                for (_, category): (String, JSON) in json {
+                    self.categories.append([
+                        "name": category["name"].stringValue,
+                        "slug": category["slug"].stringValue,
+                        "image": category["image"].stringValue
+                        ])
+                }
+                
+                
+                DispatchQueue.main.async {
+                    self.categoriesGridCollectionView.reloadData()
+                    self.categoriesGridCollectionViewHeightC.constant = CGFloat((203 + 30) * 10)
+                }
+                
+                self.productsShimmer.isHidden = true
+                self.productsShimmer.stopShimmering()
+                self.productRefreshBtn.isHidden = true
+                
+                
+            } else {
+                //no result
+                self.categoriesGridCollectionViewHeightC.constant = 0
+                self.productsShimmer.isHidden = false
+                self.productsShimmer.stopShimmering()
+                self.productRefreshBtn.isHidden = false
+                
+            }
+        }
+        
     }
     
     func setupMenuController() {
@@ -380,108 +451,108 @@ class MainViewController: UIViewController {
     
     
     func fetchProducts(paged: Int, shim: Bool) {
-        if (!Connectivity.isConnectedToInternet) {
-            self.view.makeToast("Bad internet connection!")
-            if (shim) {
-                self.productsShimmer.isHidden = false
-                self.productsShimmer.stopShimmering()
-                self.productRefreshBtn.isHidden = false
-            }
-            return
-        }
-        
-        self.productIsFetching = true
-        
-        if (shim) {
-            self.productsShimmer.isHidden = false
-            self.productsShimmer.startShimmering()
-            self.productRefreshBtn.isHidden = true
-        }
-        
-        var url = Site.init().SIMPLE_PRODUCTS + "?orderby=popularity&hide_description=1&show_variation=1&per_page=20&paged=\(paged)";
-        if (userSession.logged()) {
-            url += "&user_id=" + userSession.ID;
-        }
-        
-    
-        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
-            //check if the result has a value
-
-            if let json_result = response.result.value {
-//                print(json_result);
-                
-                    let json = JSON(json_result)
-//                    print(json)
-                    let results = json["results"] //array
-                    
-                    self.products = []
-                    for (_, subJson): (String, JSON) in results {
-                        let id = subJson["ID"].stringValue;
-                        let name = subJson["name"].stringValue;
-                        let image = subJson["image"].stringValue;
-                        let price = subJson["price"].stringValue;
-                        let product_type = subJson["product_type"].stringValue;
-                        let ptype = subJson["type"].stringValue;
-                        let description = subJson["description"].stringValue;
-                        let in_wishlist = subJson["in_wishlist"].stringValue;
-                        //let categories = subJson["categories"].stringValue;
-                        let stock_status = subJson["stock_status"].stringValue;
-                        let attributes = subJson["attributes"]
-                        let variations = subJson["variations"]
-                        let categories = subJson["categories"]
-                        let regular_price = subJson["regular_price"].stringValue
-                        
-                        
-                        let productObject = ProductObject()
-                        productObject.setID(value: id)
-                        productObject.setName(value: name)
-                        productObject.setImage(value: image)
-                        productObject.setPrice(value: price)
-                        productObject.setProductType(value: product_type)
-                        productObject.setType(value: ptype)
-                        productObject.setDescription(value: description)
-                        productObject.setInWishlist(value: in_wishlist)
-                        productObject.setStockStatus(value: stock_status)
-                        productObject.setAttributes(value: attributes)
-                        productObject.setVariations(value: variations)
-                        productObject.setCategories(value: categories)
-                        productObject.setRegularPrice(value: regular_price)
-                        
-                        self.products.append(productObject)
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self.productCollectionView.reloadData()
-                        self.productCollectionViewHeightC.constant = CGFloat((265 + 10) * 10)
-                        //                    self.productCollectionView.layoutIfNeeded()
-                    }
-                    
-                    if json["pagination"].exists() {
-                        if json["paged"].exists() {
-                            self.currentPaged = Int(json["paged"].stringValue)!
-                        }
-                    }
-                    //                print(json)
-                    
-                    if (shim) {
-                        self.productsShimmer.isHidden = true
-                        self.productsShimmer.stopShimmering()
-                        self.productRefreshBtn.isHidden = true
-                    }
-                
-                
-            } else {
-//                print("no result");
-                //no result
-                if (shim) {
-                    self.productsShimmer.isHidden = false
-                    self.productsShimmer.stopShimmering()
-                    self.productRefreshBtn.isHidden = false
-                }
-            }
-            //after every thing
-            self.productIsFetching = false
-        }
+//        if (!Connectivity.isConnectedToInternet) {
+//            self.view.makeToast("Bad internet connection!")
+//            if (shim) {
+//                self.productsShimmer.isHidden = false
+//                self.productsShimmer.stopShimmering()
+//                self.productRefreshBtn.isHidden = false
+//            }
+//            return
+//        }
+//
+//        self.productIsFetching = true
+//
+//        if (shim) {
+//            self.productsShimmer.isHidden = false
+//            self.productsShimmer.startShimmering()
+//            self.productRefreshBtn.isHidden = true
+//        }
+//
+//        var url = Site.init().SIMPLE_PRODUCTS + "?orderby=popularity&hide_description=1&show_variation=1&per_page=20&paged=\(paged)";
+//        if (userSession.logged()) {
+//            url += "&user_id=" + userSession.ID;
+//        }
+//
+//
+//        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+//            //check if the result has a value
+//
+//            if let json_result = response.result.value {
+////                print(json_result);
+//
+//                    let json = JSON(json_result)
+////                    print(json)
+//                    let results = json["results"] //array
+//
+//                    self.products = []
+//                    for (_, subJson): (String, JSON) in results {
+//                        let id = subJson["ID"].stringValue;
+//                        let name = subJson["name"].stringValue;
+//                        let image = subJson["image"].stringValue;
+//                        let price = subJson["price"].stringValue;
+//                        let product_type = subJson["product_type"].stringValue;
+//                        let ptype = subJson["type"].stringValue;
+//                        let description = subJson["description"].stringValue;
+//                        let in_wishlist = subJson["in_wishlist"].stringValue;
+//                        //let categories = subJson["categories"].stringValue;
+//                        let stock_status = subJson["stock_status"].stringValue;
+//                        let attributes = subJson["attributes"]
+//                        let variations = subJson["variations"]
+//                        let categories = subJson["categories"]
+//                        let regular_price = subJson["regular_price"].stringValue
+//
+//
+//                        let productObject = ProductObject()
+//                        productObject.setID(value: id)
+//                        productObject.setName(value: name)
+//                        productObject.setImage(value: image)
+//                        productObject.setPrice(value: price)
+//                        productObject.setProductType(value: product_type)
+//                        productObject.setType(value: ptype)
+//                        productObject.setDescription(value: description)
+//                        productObject.setInWishlist(value: in_wishlist)
+//                        productObject.setStockStatus(value: stock_status)
+//                        productObject.setAttributes(value: attributes)
+//                        productObject.setVariations(value: variations)
+//                        productObject.setCategories(value: categories)
+//                        productObject.setRegularPrice(value: regular_price)
+//
+//                        self.products.append(productObject)
+//                    }
+//
+//                    DispatchQueue.main.async {
+//                        self.productCollectionView.reloadData()
+//                        self.productCollectionViewHeightC.constant = CGFloat((265 + 10) * 10)
+//                        //                    self.productCollectionView.layoutIfNeeded()
+//                    }
+//
+//                    if json["pagination"].exists() {
+//                        if json["paged"].exists() {
+//                            self.currentPaged = Int(json["paged"].stringValue)!
+//                        }
+//                    }
+//                    //                print(json)
+//
+//                    if (shim) {
+//                        self.productsShimmer.isHidden = true
+//                        self.productsShimmer.stopShimmering()
+//                        self.productRefreshBtn.isHidden = true
+//                    }
+//
+//
+//            } else {
+////                print("no result");
+//                //no result
+//                if (shim) {
+//                    self.productsShimmer.isHidden = false
+//                    self.productsShimmer.stopShimmering()
+//                    self.productRefreshBtn.isHidden = false
+//                }
+//            }
+//            //after every thing
+//            self.productIsFetching = false
+//        }
     }
 
     
@@ -688,6 +759,7 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.bannerCollectionView {
             return self.banners.count
@@ -701,9 +773,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             return self.carouselBanners.count
         } else if collectionView == self.videoBannerCollectionView {
             return self.videoBanners.count
-        } else if collectionView == self.productCollectionView {
-            return self.products.count
-        }
+        } else if collectionView == self.categoriesGridCollectionView {
+            return self.categories.count
+        } // else if collectionView == self.productCollectionView {
+          //  return self.products.count
+        //}
         
         return 0
     }
@@ -742,69 +816,80 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: videoBannerReuseIdentifier, for: indexPath) as! VideoBannerCollectionViewCell
             cell.bannerImage.pin_setImage(from: URL(string: self.videoBanners[indexPath.row]["image"]!))
             return cell
-        } else if collectionView == self.productCollectionView { //else for product
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productReuseIdentifier, for: indexPath) as! ProductCardCollectionViewCell
-            cell.parentView = self.view
-            cell.cardDelegate = self
-            cell.productID = self.products[indexPath.row].getID()
-            cell.hasWishList = self.products[indexPath.row].getInWishlist() == "true"
-            cell.productImage.pin_setImage(from: URL(string: self.products[indexPath.row].getImage()))
-            cell.productTitle.text = self.products[indexPath.row].getName()
+        } else if collectionView == self.categoriesGridCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryReuseIdentifier, for: indexPath) as! CategoriesGridCollectionViewCell
+            cell.catImage.pin_setImage(from: URL(string: self.categories[indexPath.row]["image"]!))
+            cell.catTitle.text = (self.categories[indexPath.row]["name"]!).htmlToString
             
-            //variable
-            if self.products[indexPath.row].getProductType() == "variable" || self.products[indexPath.row].getType() == "variable" {
-                cell.productPrice.text = "From " + Site.init().CURRENCY + PriceFormatter.format(price: self.products[indexPath.row].getPrice())
-                cell.regularPrice.isHidden = true
-            } else { //single product
-                cell.productPrice.text = Site.init().CURRENCY + PriceFormatter.format(price: self.products[indexPath.row].getPrice())
-                
-                let regularPriceAtt: NSMutableAttributedString = NSMutableAttributedString(string: Site.init().CURRENCY +  self.products[indexPath.row].getRegularPrice())
-                regularPriceAtt.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 2, range: NSMakeRange(0, regularPriceAtt.length))
-                cell.regularPrice.attributedText = regularPriceAtt
-                cell.regularPrice.isHidden = false
-            }
-            //wishlist button
-            if (cell.hasWishList) {
-                cell.wishListBtn.setImage(UIImage(named: "icons8_heart_outline_1"), for: .normal)
-            } else {
-                cell.wishListBtn.setImage(UIImage(named: "icons8_heart_outline"), for: .normal)
-            }
-        
-            
-            if self.products[indexPath.row].getCategories().count > 0 {
-                let categories = self.products[indexPath.row].getCategories()
-                cell.categoryLabel.text = ("   " + categories[0]["name"].stringValue + "   ").replacingOccurrences(of: "&amp;", with: "&")
-            } else {
-                cell.categoryLabel.text = ""
-            }
-            
-            
-            
-            //MORE
-            cell.productType = self.products[indexPath.row].getProductType()
-            if self.products[indexPath.row].getStockStatus() == "outofstock" {
-                cell.productPrice.text = "Out of Stock"
-                cell.productPrice.textAlignment = .center
-//                cell.addToCartBtn.isHidden = true
-            }
-            
-            //FOR THE ATTRIBUTES
-            
-            if self.products[indexPath.row].getProductType() == "variable" || self.products[indexPath.row].getType() == "variable" {
-                
-                cell.variations = self.products[indexPath.row].getVariations()
-                
-                cell.attributes = self.products[indexPath.row].getAttributes()
-                
-            }
-                
-            
-            
-            
-            
+            cell.layer.borderWidth = 1
+            cell.layer.borderColor = UIColor(rgb: 0xF1F1F1).cgColor
+            cell.layer.cornerRadius = 3
+            cell.clipsToBounds = true
             
             return cell
-        }
+        } //else if collectionView == self.productCollectionView { //else for product
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productReuseIdentifier, for: indexPath) as! ProductCardCollectionViewCell
+//            cell.parentView = self.view
+//            cell.cardDelegate = self
+//            cell.productID = self.products[indexPath.row].getID()
+//            cell.hasWishList = self.products[indexPath.row].getInWishlist() == "true"
+//            cell.productImage.pin_setImage(from: URL(string: self.products[indexPath.row].getImage()))
+//            cell.productTitle.text = self.products[indexPath.row].getName()
+//
+//            //variable
+//            if self.products[indexPath.row].getProductType() == "variable" || self.products[indexPath.row].getType() == "variable" {
+//                cell.productPrice.text = "From " + Site.init().CURRENCY + PriceFormatter.format(price: self.products[indexPath.row].getPrice())
+//                cell.regularPrice.isHidden = true
+//            } else { //single product
+//                cell.productPrice.text = Site.init().CURRENCY + PriceFormatter.format(price: self.products[indexPath.row].getPrice())
+//
+//                let regularPriceAtt: NSMutableAttributedString = NSMutableAttributedString(string: Site.init().CURRENCY + PriceFormatter.format(price: self.products[indexPath.row].getRegularPrice()))
+//                regularPriceAtt.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 2, range: NSMakeRange(0, regularPriceAtt.length))
+//                cell.regularPrice.attributedText = regularPriceAtt
+//                cell.regularPrice.isHidden = false
+//            }
+//            //wishlist button
+//            if (cell.hasWishList) {
+//                cell.wishListBtn.setImage(UIImage(named: "icons8_heart_outline_1"), for: .normal)
+//            } else {
+//                cell.wishListBtn.setImage(UIImage(named: "icons8_heart_outline"), for: .normal)
+//            }
+//
+//
+//            if self.products[indexPath.row].getCategories().count > 0 {
+//                let categories = self.products[indexPath.row].getCategories()
+//                cell.categoryLabel.text = ("   " + categories[0]["name"].stringValue + "   ").replacingOccurrences(of: "&amp;", with: "&")
+//            } else {
+//                cell.categoryLabel.text = ""
+//            }
+//
+//
+//
+//            //MORE
+//            cell.productType = self.products[indexPath.row].getProductType()
+//            if self.products[indexPath.row].getStockStatus() == "outofstock" {
+//                cell.productPrice.text = "Out of Stock"
+//                cell.productPrice.textAlignment = .center
+////                cell.addToCartBtn.isHidden = true
+//            }
+//
+//            //FOR THE ATTRIBUTES
+//
+//            if self.products[indexPath.row].getProductType() == "variable" || self.products[indexPath.row].getType() == "variable" {
+//
+//                cell.variations = self.products[indexPath.row].getVariations()
+//
+//                cell.attributes = self.products[indexPath.row].getAttributes()
+//
+//            }
+//
+//
+//
+//
+//
+//
+//            return cell
+//        }
         
         return collectionView.dequeueReusableCell(withReuseIdentifier: productReuseIdentifier, for: indexPath) as! ProductCardCollectionViewCell
         
@@ -812,7 +897,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     
     
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.bannerCollectionView {
             return CGSize(width: self.view.frame.size.width - 30, height: 150)
@@ -826,8 +911,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             return CGSize(width: self.view.frame.size.width - 20, height: 180)
         } else if collectionView == self.videoBannerCollectionView {
             return CGSize(width: self.view.frame.size.width, height: 180)
+        } else if collectionView == self.categoriesGridCollectionView {
+            return CGSize(width: (self.view.frame.size.width/2) - 20, height: 203)
         } else {
-            return CGSize(width: (self.view.frame.size.width/2) - 25, height: 265)
+            return CGSize(width: (self.view.frame.size.width/2) - 27, height: 265)
         }
         
     }
@@ -878,18 +965,23 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             bannerClickedFromCollection(bannerDict: self.carouselBanners[indexPath.row])
         } else if (collectionView == self.videoBannerCollectionView) {
             bannerClickedFromCollection(bannerDict: self.videoBanners[indexPath.row])
+        } else if collectionView == self.categoriesGridCollectionView {
+            let archivePage = ArchiveViewController()
+            archivePage.category_name = self.categories[indexPath.row]["slug"]!
+            archivePage.category_title = self.categories[indexPath.row]["name"]!
+            self.presentWithCondition(controller: archivePage, animated: true, completion: nil)
         } else { //for products
             
-            productPage = ProductViewController()
-            productPage.productID = self.products[indexPath.item].getID()
-            productPage.productName = self.products[indexPath.item].getName()
-            productPage.productImage = self.products[indexPath.item].getImage()
-            productPage.productPrice = self.products[indexPath.item].getPrice()
-            productPage.productType = self.products[indexPath.item].getProductType()
-            productPage.productType2 = self.products[indexPath.item].getType()
-            productPage.productDescription = self.products[indexPath.item].getDescription()
-            productPage.in_wishlist = self.products[indexPath.item].getInWishlist() == "true"
-            self.presentWithCondition(controller: productPage, animated: true, completion: nil)
+//            productPage = ProductViewController()
+//            productPage.productID = self.products[indexPath.item].getID()
+//            productPage.productName = self.products[indexPath.item].getName()
+//            productPage.productImage = self.products[indexPath.item].getImage()
+//            productPage.productPrice = self.products[indexPath.item].getPrice()
+//            productPage.productType = self.products[indexPath.item].getProductType()
+//            productPage.productType2 = self.products[indexPath.item].getType()
+//            productPage.productDescription = self.products[indexPath.item].getDescription()
+//            productPage.in_wishlist = self.products[indexPath.item].getInWishlist() == "true"
+//            self.presentWithCondition(controller: productPage, animated: true, completion: nil)
             
             
             return

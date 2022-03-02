@@ -111,6 +111,7 @@
 		D6F1C6FF279FD79D0042BA76 /* ProductObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F1C6FE279FD79D0042BA76 /* ProductObject.swift */; };
 		D6F1C701279FDA0E0042BA76 /* Dialogs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6F1C700279FDA0E0042BA76 /* Dialogs.storyboard */; };
 		D6F1C703279FF7AE0042BA76 /* AttributesDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F1C702279FF7AE0042BA76 /* AttributesDialogViewController.swift */; };
+		D6FD26BA27CF4676001E9CCF /* CategoriesGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD26B927CF4676001E9CCF /* CategoriesGridCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -227,6 +228,7 @@
 		D6F1C6FE279FD79D0042BA76 /* ProductObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductObject.swift; sourceTree = "<group>"; };
 		D6F1C700279FDA0E0042BA76 /* Dialogs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dialogs.storyboard; sourceTree = "<group>"; };
 		D6F1C702279FF7AE0042BA76 /* AttributesDialogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributesDialogViewController.swift; sourceTree = "<group>"; };
+		D6FD26B927CF4676001E9CCF /* CategoriesGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesGridCollectionViewCell.swift; sourceTree = "<group>"; };
 		E38553A3D4946677879BF346 /* Pods-AstroQ8.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AstroQ8.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AstroQ8/Pods-AstroQ8.debug.xcconfig"; sourceTree = "<group>"; };
 		F821EEB60DF0B089D0260E0E /* Pods_AstroQ8.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AstroQ8.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -374,6 +376,7 @@
 				D62D329A27B506FC00C17349 /* AddedToCartViewController.swift */,
 				D60AEAF327C0F3C0006E6F5A /* LoadingViewController.swift */,
 				D60AEAF427C0F3C0006E6F5A /* LoadingViewController.xib */,
+				D6FD26B927CF4676001E9CCF /* CategoriesGridCollectionViewCell.swift */,
 			);
 			name = UI;
 			path = App/UI;
@@ -644,6 +647,7 @@
 				D62AB817279330CF005FC71A /* PriceFormatter.swift in Sources */,
 				D62AB8672793310F005FC71A /* ProductCardCollectionViewCell.swift in Sources */,
 				D62AB8732793310F005FC71A /* CheckoutAddressViewController.swift in Sources */,
+				D6FD26BA27CF4676001E9CCF /* CategoriesGridCollectionViewCell.swift in Sources */,
 				D62AB8562793310F005FC71A /* ActivityViewController.swift in Sources */,
 				D62AB85A2793310F005FC71A /* CartTableViewCell.swift in Sources */,
 				D62AB8832793310F005FC71A /* SearchViewController.swift in Sources */,

@@ -18,7 +18,22 @@ class PriceFormatter {
         //back to double
         let toDouble = Double(String(format: "%.2f", priceDouble))
         
-        return (toDouble?.formattedWithSeparator)!
+        var ret = (toDouble?.formattedWithSeparator)!
+        
+        //issue from astroq8
+        let arr = ret.components(separatedBy: ".")
+        if (arr.count > 1) {
+            if (arr[1].count == 1) {
+                ret = ret + "00"
+            } else if (arr[1].count == 2) {
+                ret = ret + "0"
+            }
+        } else {
+            ret = ret + ".000"
+        }
+        //issue from astroq8 - will be removed for other projects
+        
+        return ret
     }
     
     public static func format(price: Double) -> String {
@@ -26,5 +41,12 @@ class PriceFormatter {
         let toDouble = Double(String(format: "%.2f", price))
         
         return (toDouble?.formattedWithSeparator)!
+    }
+}
+
+extension Double {
+    mutating func roundToPlaces(places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return Darwin.round(self * divisor) / divisor
     }
 }

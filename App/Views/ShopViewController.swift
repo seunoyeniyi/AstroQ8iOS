@@ -385,7 +385,7 @@ extension ShopViewController: UICollectionViewDataSource, UICollectionViewDelega
         } else { //single product
             cell.productPrice.text = Site.init().CURRENCY + PriceFormatter.format(price: self.products[indexPath.row].getPrice())
             
-            let regularPriceAtt: NSMutableAttributedString = NSMutableAttributedString(string: Site.init().CURRENCY +  self.products[indexPath.row].getRegularPrice())
+            let regularPriceAtt: NSMutableAttributedString = NSMutableAttributedString(string: Site.init().CURRENCY + PriceFormatter.format(price: self.products[indexPath.row].getRegularPrice()))
             regularPriceAtt.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 2, range: NSMakeRange(0, regularPriceAtt.length))
             cell.regularPrice.attributedText = regularPriceAtt
             cell.regularPrice.isHidden = false

@@ -19,7 +19,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ArchiveViewController" customModule="MyShirtEg" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ArchiveViewController" customModule="AstroQ8" customModuleProvider="target">
             <connections>
                 <outlet property="categoryDescription" destination="TFO-Bp-hhk" id="XQV-vC-yRL"/>
                 <outlet property="categoryTitleLbl" destination="p4F-bh-dXU" id="iuN-ms-q6U"/>
@@ -128,7 +128,7 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="du5-Wk-jkA" userLabel="Products Shimmer" customClass="ShimmerViewContainer" customModule="MyShirtEg" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="du5-Wk-jkA" userLabel="Products Shimmer" customClass="ShimmerViewContainer" customModule="AstroQ8" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="124" width="375" height="543"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Product Found!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUO-H8-t3m">

@@ -18,7 +18,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductViewController" customModule="MyShirtEg" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductViewController" customModule="AstroQ8" customModuleProvider="target">
             <connections>
                 <outlet property="addToCartBtn" destination="7la-i1-y7s" id="g9C-oR-mhb"/>
                 <outlet property="addToCartContainer" destination="wKr-mw-lNs" id="PIB-Tc-sPJ"/>
@@ -112,7 +112,7 @@
                                                 <constraint firstAttribute="height" constant="20" id="xuJ-91-VwL"/>
                                             </constraints>
                                         </stackView>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Sf-cZ-Btj" customClass="WishListButton" customModule="MyShirtEg" customModuleProvider="target">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Sf-cZ-Btj" customClass="WishListButton" customModule="AstroQ8" customModuleProvider="target">
                                             <rect key="frame" x="964" y="370" width="40" height="40"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -153,7 +153,6 @@
                                     <segments>
                                         <segment title="Product"/>
                                         <segment title="Details"/>
-                                        <segment title="Reviews"/>
                                     </segments>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <connections>
@@ -246,7 +245,7 @@
                                                 <constraint firstItem="b92-Ll-yr9" firstAttribute="centerX" secondItem="Svp-r3-Mnu" secondAttribute="centerX" id="tfq-Ng-gsG"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="center" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BBl-Vn-Ivj" userLabel="Total Rating Container" customClass="CosmosView" customModule="MyShirtEg" customModuleProvider="target">
+                                        <view contentMode="center" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BBl-Vn-Ivj" userLabel="Total Rating Container" customClass="CosmosView" customModule="AstroQ8" customModuleProvider="target">
                                             <rect key="frame" x="392" y="50" width="220" height="40"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -305,7 +304,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aHn-Qo-BeM" userLabel="Your rating" customClass="CosmosView" customModule="MyShirtEg" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aHn-Qo-BeM" userLabel="Your rating" customClass="CosmosView" customModule="AstroQ8" customModuleProvider="target">
                                             <rect key="frame" x="392" y="233.5" width="220" height="40"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>

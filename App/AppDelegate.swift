@@ -22,12 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //window?.overrideUserInterfaceStyle = .light
         }
         
-//        let userSession = UserSession()
-//
-//        FirebaseApp.configure()
-//
-//        let pushManager = PushNotificationManager(userID: userSession.ID)
-//        pushManager.registerForPushNotifications()
+        let userSession = UserSession()
+
+        FirebaseApp.configure()
+
+        let pushManager = PushNotificationManager(userID: userSession.ID)
+        pushManager.registerForPushNotifications()
 
         
         
