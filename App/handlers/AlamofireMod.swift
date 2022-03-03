@@ -9,7 +9,7 @@
 import Alamofire
 
 
-extension Alamofire.SessionManager{
+extension Alamofire.Session{
     @discardableResult
     open func requestWithoutCache(
         _ url: URLConvertible,
