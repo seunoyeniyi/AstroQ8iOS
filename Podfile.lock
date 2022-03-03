@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.4.4)
   - Firebase/Analytics (5.14.0):
     - Firebase/Core
   - Firebase/Core (5.14.0):
@@ -56,20 +57,46 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (5.8.0):
     - GoogleUtilities/Logger
+  - iOSDropDown (0.3.4)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - PINCache (3.0.3):
+    - PINCache/Arc-exception-safe (= 3.0.3)
+    - PINCache/Core (= 3.0.3)
+  - PINCache/Arc-exception-safe (3.0.3):
+    - PINCache/Core
+  - PINCache/Core (3.0.3):
+    - PINOperation (~> 1.2.1)
+  - PINOperation (1.2.1)
+  - PINRemoteImage (3.0.3):
+    - PINRemoteImage/PINCache (= 3.0.3)
+  - PINRemoteImage/Core (3.0.3):
+    - PINOperation
+  - PINRemoteImage/PINCache (3.0.3):
+    - PINCache (~> 3.0.3)
+    - PINRemoteImage/Core
   - Protobuf (3.19.1)
+  - SwiftyJSON (5.0.1)
+  - Toast-Swift (5.0.1)
+  - WARangeSlider (1.1.1)
 
 DEPENDENCIES:
+  - Alamofire
   - Firebase/Analytics (= 5.14.0)
   - Firebase/Core (= 5.14.0)
   - Firebase/Messaging (= 5.14.0)
+  - iOSDropDown
+  - PINRemoteImage
+  - SwiftyJSON
+  - Toast-Swift
+  - WARangeSlider
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -78,10 +105,18 @@ SPEC REPOS:
     - FirebaseMessaging
     - GoogleAppMeasurement
     - GoogleUtilities
+    - iOSDropDown
     - nanopb
+    - PINCache
+    - PINOperation
+    - PINRemoteImage
     - Protobuf
+    - SwiftyJSON
+    - Toast-Swift
+    - WARangeSlider
 
 SPEC CHECKSUMS:
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   Firebase: 963d5685fae888a56d6d4d9cfce6b9c976958798
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
@@ -90,9 +125,16 @@ SPEC CHECKSUMS:
   FirebaseMessaging: b412996f6a09337d232bb3a6676ce4d1f353d024
   GoogleAppMeasurement: 98b71f5e04142793729a5ef23e5b96651ff4b70f
   GoogleUtilities: 04fce34bcd5620c1ee76fb79172105c74a4df335
+  iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
+  PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
+  PINRemoteImage: f1295b29f8c5e640e25335a1b2bd9d805171bd01
   Protobuf: 3724efa50cb2846d7ccebc8691c574e85fd74471
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
+  WARangeSlider: 54b3e0853b8d16c444fd539005901aecee86837d
 
-PODFILE CHECKSUM: 93b0730bfc35f4a987938d2d2ca2b3f2fc9ee3b8
+PODFILE CHECKSUM: e530597855995aab6b78003c35757c070d73e918
 
 COCOAPODS: 1.5.2
