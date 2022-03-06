@@ -123,9 +123,9 @@ class PaymentViewController: NoBarViewController {
         
         let url = Site.init().USER + userSession.ID;
         
-        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+        Alamofire.Session.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
                 let address = json["shipping_address"]
                 self.parseData = address
@@ -157,9 +157,9 @@ class PaymentViewController: NoBarViewController {
         
         let url = Site.init().CART + userSession.ID
         
-        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+        Alamofire.Session.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
                 if (json["contents_count"].intValue > 0) {
                     let subtotal = json["subtotal"].doubleValue
@@ -238,9 +238,9 @@ class PaymentViewController: NoBarViewController {
         let url = Site.init().CHANGE_CART_SHIPPING + userSession.ID + "/" + method;
         let parameters: [String: AnyObject] = [:]
         
-        Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
+        Alamofire.Session.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
                 
                 if json["has_shipping"].stringValue == "true" {
@@ -273,9 +273,9 @@ class PaymentViewController: NoBarViewController {
         let url = Site.init().UPDATE_COUPON + userSession.ID + "/" + coupon;
         let parameters: [String: AnyObject] = [:]
         
-        Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
+        Alamofire.Session.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
                 if json["has_coupon"].stringValue == "true" {
                     let subtotal = json["subtotal"].doubleValue
@@ -342,9 +342,9 @@ class PaymentViewController: NoBarViewController {
             parameters["payment_method"] = paymentMethod as AnyObject
         }
         
-        Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
+        Alamofire.Session.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
                 if (json["cart_empty"].stringValue == "true" || json["cart_exists"].stringValue == "false" || !json["info"].exists()) {
                     //cannot create order because cart is empty or not found
@@ -540,9 +540,9 @@ extension PaymentViewController: UITableViewDelegate, UITableViewDataSource {
 //            parameters["allow_guest"] = 1 as AnyObject
 //        }
 //
-//        Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
+//        Alamofire.Session.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
 //            (response:DataResponse) in
-//            if let json_result = response.result.value {
+//            if let json_result = response.value {
 //                let json = JSON(json_result)
 //                if json["order_status_updated"].boolValue {
 //                    self.loadingView.isHidden = true

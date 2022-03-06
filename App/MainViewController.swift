@@ -225,9 +225,9 @@ class MainViewController: UIViewController {
         
         let url = Site.init().CATEGORIES + "?hide_empty=1&order_by=menu_order";
         
-        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+        Alamofire.Session.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 
                 let json = JSON(json_result)
                 self.categories = []
@@ -397,9 +397,9 @@ class MainViewController: UIViewController {
             
             let url = Site.init().BANNERS + "?type=" + type;
             
-            Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+            Alamofire.Session.default.requestWithoutCache(url).responseJSON { (response) -> Void in
                 //check if the result has a value
-                if let json_result = response.result.value {
+                if let json_result = response.value {
                     
                         let json = JSON(json_result)
                     //print(json)
@@ -475,10 +475,10 @@ class MainViewController: UIViewController {
 //        }
 //
 //
-//        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+//        Alamofire.Session.default.requestWithoutCache(url).responseJSON { (response) -> Void in
 //            //check if the result has a value
 //
-//            if let json_result = response.result.value {
+//            if let json_result = response.value {
 ////                print(json_result);
 //
 //                    let json = JSON(json_result)
@@ -639,9 +639,9 @@ class MainViewController: UIViewController {
         
 
         
-        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+        Alamofire.Session.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
                 if (json["contents_count"].intValue > 0) {
                     self.cartNotification.text = json["contents_count"].stringValue
@@ -685,9 +685,9 @@ class MainViewController: UIViewController {
         
         let url = Site.init().INFO
         
-        Alamofire.request(url).responseJSON { (response) -> Void in
+        AF.request(url).responseJSON { (response) -> Void in
             //check if the result has a value
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 
                     let json = JSON(json_result)
                     let site = json

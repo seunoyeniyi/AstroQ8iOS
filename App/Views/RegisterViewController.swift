@@ -91,9 +91,9 @@ class RegisterViewController: UIViewController {
             parameters["replace_cart_user"] = userSession.ID as AnyObject
         }
         
-        Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
+        Alamofire.Session.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
 //                print(json)
                 if json["code"].exists() || json["data"] == JSON.null {

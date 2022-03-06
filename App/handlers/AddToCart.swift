@@ -47,10 +47,10 @@ class AddToCart {
             parameters["replace_quantity"] = 1 as AnyObject
         }
         
-        Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
+        Alamofire.Session.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in
             
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
 //                print(json)
                 if (self.userSession.ID == "0" && !json["user_cart_exists"].boolValue) {
