@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import Toast_Swift
 
 
 protocol AddToCartDelegate {
@@ -59,6 +60,13 @@ class AddToCart {
                     self.delegate?.cartNotAdded(msg: "Can't create cart! Please login or register.")
                 }
                 
+                if json["code"].exists() || json["msg"].exists() {
+                    var style = ToastStyle()
+                    style.imageSize = CGSize(width: 20, height: 20)
+                    controller.view.makeToast(json["msg"].stringValue, position: .top, image: UIImage(named: "icons8_cancel"), style: style)
+                    self.activityView!.isHidden = true
+                    return
+                }
             
                 self.userSession.update_last_cart_count(count: json["contents_count"].stringValue);
                 self.userSession.reload()

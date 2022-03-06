@@ -78,7 +78,7 @@ class CheckoutAddressViewController: NoBarViewController {
             //            self.view.makeToast("Please login")
             //            self.dismiss(animated: true, completion: nil)
             
-            self.country.text = "Egypt"
+            self.country.text = "Kuwait"
             self.country.isUserInteractionEnabled = false
         }
     }

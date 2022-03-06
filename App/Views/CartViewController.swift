@@ -249,13 +249,13 @@ class CartViewController: NoBarViewController {
     }
     @IBAction func completeOrderTapped(_ sender: Any) {
         let checkoutController = CheckoutAddressViewController()
-        if (userSession.logged()) {
+//        if (userSession.logged()) {
             self.presentWithCondition(controller: checkoutController, animated: true, completion: nil)
-        } else {
-            let loginViewController = LoginViewController()
-            loginViewController.delegate = self
-            self.present(loginViewController, animated: true)
-        }
+//        } else {
+//            let loginViewController = LoginViewController()
+//            loginViewController.delegate = self
+//            self.present(loginViewController, animated: true)
+//        }
         
     }
     @IBAction func continueShoppingTapped(_ sender: Any) {
@@ -430,6 +430,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource, CartTa
 }
 
 extension CartViewController: AddToCartDelegate {
+    
     func cartAdded(totalItems: String, subTotal: String, total: String, json: JSON) {
         let totalItemsInt: Int = Int(totalItems) ?? 0
         

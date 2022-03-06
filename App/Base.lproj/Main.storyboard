@@ -43,7 +43,7 @@
                                                         <rect key="frame" x="20" y="10" width="335" height="40"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqS-um-iyN" customClass="StyleButton" customModule="AstroQ8" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="5" width="157.66666666666666" height="30"/>
+                                                                <rect key="frame" x="0.0" y="4.6666666666666714" width="157.66666666666666" height="31"/>
                                                                 <color key="backgroundColor" name="White"/>
                                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                                 <state key="normal" title="Log In">
@@ -54,7 +54,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZdI-GW-gSN" customClass="StyleButton" customModule="AstroQ8" customModuleProvider="target">
-                                                                <rect key="frame" x="177.66666666666663" y="5" width="157.33333333333337" height="30"/>
+                                                                <rect key="frame" x="177.66666666666663" y="4.6666666666666714" width="157.33333333333337" height="31"/>
                                                                 <color key="backgroundColor" name="Black"/>
                                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                                 <state key="normal" title="Sign Up">
@@ -891,7 +891,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading customer experience..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yif-yF-Sv1">
-                                        <rect key="frame" x="88.999999999999986" y="1235" width="197.66666666666663" height="16.333333333333258"/>
+                                        <rect key="frame" x="78.666666666666671" y="1235" width="218.33333333333331" height="17.333333333333258"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                         <color key="textColor" name="Black"/>
                                         <nil key="highlightedColor"/>
@@ -986,7 +986,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1hD-NR-SMJ" userLabel="Header">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boy-profile" translatesAutoresizingMaskIntoConstraints="NO" id="9oq-Ru-hEP">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Favicon" translatesAutoresizingMaskIntoConstraints="NO" id="9oq-Ru-hEP">
                                         <rect key="frame" x="20" y="85" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="423-sR-ajq"/>
@@ -994,12 +994,12 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDx-Fn-Vax">
-                                        <rect key="frame" x="110" y="100.66666666666667" width="255" height="20"/>
+                                        <rect key="frame" x="110" y="100.33333333333333" width="255" height="20"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbg-Vg-96G" customClass="CustomButton" customModule="AstroQ8" customModuleProvider="target">
-                                        <rect key="frame" x="110" y="122.66666666666669" width="255" height="28"/>
+                                        <rect key="frame" x="110" y="122.33333333333331" width="255" height="28"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="Account Settings">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1492,7 +1492,6 @@
     </scenes>
     <resources>
         <image name="Favicon" width="1272" height="1198"/>
-        <image name="boy-profile" width="256" height="256"/>
         <image name="icons8_align_left" width="20" height="20"/>
         <image name="icons8_basket" width="20" height="20"/>
         <image name="icons8_delete_1" width="24" height="24"/>

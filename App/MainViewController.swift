@@ -242,7 +242,7 @@ class MainViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     self.categoriesGridCollectionView.reloadData()
-                    self.categoriesGridCollectionViewHeightC.constant = CGFloat((203 + 5) * 7)
+                    self.categoriesGridCollectionViewHeightC.constant = CGFloat((203 + 20) * (self.categories.count / 2))
                 }
                 
                 self.productsShimmer.isHidden = true
