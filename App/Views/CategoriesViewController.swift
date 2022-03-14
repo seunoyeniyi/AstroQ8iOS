@@ -53,7 +53,7 @@ class CategoriesViewController: NoBarViewController {
         self.loadingLabel.text = "Loading..."
         self.loadingTryAgain.isHidden = true
         
-        let url = Site.init().CATEGORIES + "?hide_empty=1&order_by=menu_order";
+        let url = Site.init().CATEGORIES + "?hide_empty=1&order_by=menu_order" + Site.init().TOKEN_KEY_APPEND;
         
         Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value

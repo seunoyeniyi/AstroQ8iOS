@@ -98,7 +98,7 @@ class OrderViewController: UIViewController {
         self.errorLabel.isHidden = true
         self.tryAgainBtn.isHidden = true
         
-        let url = Site.init().ORDER + self.orderID + "/" + userSession.ID;
+        let url = Site.init().ORDER + self.orderID + "/" + userSession.ID + "?token_key=" + Site.init().TOKEN_KEY
         
         Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value

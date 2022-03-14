@@ -106,7 +106,7 @@ class CheckoutAddressViewController: NoBarViewController {
         
         self.loadingView.isHidden = false
     
-        let url = Site.init().USER + userSession.ID + "?with_regions=1"
+        let url = Site.init().USER + userSession.ID + "?with_regions=1" + Site.init().TOKEN_KEY_APPEND
         
         Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
@@ -251,7 +251,7 @@ class CheckoutAddressViewController: NoBarViewController {
             self.view.makeToast("Bad internet connection!")
             return
         }
-        let url = Site.init().CART + userSession.ID
+        let url = Site.init().CART + userSession.ID + "?token_key=" + Site.init().TOKEN_KEY
         
         Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
@@ -295,6 +295,7 @@ class CheckoutAddressViewController: NoBarViewController {
             "phone": self.phoneNumber.text as AnyObject,
 //            "selected_country": self.selectedCountry as AnyObject,
 //            "selected_state": self.selectedState as AnyObject,
+            "token_key": Site.init().TOKEN_KEY as AnyObject
      
         ]
         
@@ -303,6 +304,8 @@ class CheckoutAddressViewController: NoBarViewController {
         if userSession.logged() {
             url = Site.init().UPDATE_SHIPPING + userSession.ID;
         }
+        
+
         
         Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in

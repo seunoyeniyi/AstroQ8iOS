@@ -223,7 +223,7 @@ class MainViewController: UIViewController {
         self.productRefreshBtn.isHidden = true
         
         
-        let url = Site.init().CATEGORIES + "?hide_empty=1&order_by=menu_order";
+        let url = Site.init().CATEGORIES + "?hide_empty=1&order_by=menu_order" + Site.init().TOKEN_KEY_APPEND;
         
         Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
@@ -395,7 +395,7 @@ class MainViewController: UIViewController {
         var returnBanners: Array<Dictionary<String, String>> = []
             
             
-            let url = Site.init().BANNERS + "?type=" + type;
+            let url = Site.init().BANNERS + "?type=" + type + Site.init().TOKEN_KEY_APPEND;
             
             Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
                 //check if the result has a value
@@ -474,7 +474,7 @@ class MainViewController: UIViewController {
 //            url += "&user_id=" + userSession.ID;
 //        }
 //
-//
+//          url = url + Site.init().TOKEN_KEY
 //        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
 //            //check if the result has a value
 //
@@ -635,7 +635,7 @@ class MainViewController: UIViewController {
     
     func updateCartNotification() {
         
-        let url = Site.init().CART + userSession.ID
+        let url = Site.init().CART + userSession.ID + "?token_key=" + Site.init().TOKEN_KEY;
         
 
         
@@ -683,7 +683,7 @@ class MainViewController: UIViewController {
         
         
         
-        let url = Site.init().INFO
+        let url = Site.init().INFO + "?token_key=" + Site.init().TOKEN_KEY;
         
         Alamofire.request(url).responseJSON { (response) -> Void in
             //check if the result has a value

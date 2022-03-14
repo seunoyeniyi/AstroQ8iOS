@@ -61,7 +61,9 @@ extension UIViewController {
             url = Site.init().REMOVE_FROM_WISH_LIST + user_id + "/" + product_id;
         }
         
-        let parameters: [String: AnyObject] = [:]
+        let parameters: [String: AnyObject] = [
+            "token_key": Site.init().TOKEN_KEY as AnyObject
+        ]
         
         Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in

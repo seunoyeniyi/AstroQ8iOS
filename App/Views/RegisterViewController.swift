@@ -91,6 +91,8 @@ class RegisterViewController: UIViewController {
             parameters["replace_cart_user"] = userSession.ID as AnyObject
         }
         
+        parameters["token_key"] = Site.init().TOKEN_KEY as AnyObject
+        
         Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in
             if let json_result = response.result.value {

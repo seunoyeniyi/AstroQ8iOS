@@ -121,7 +121,7 @@ class PaymentViewController: NoBarViewController {
         
         self.loadingView.isHidden = false
         
-        let url = Site.init().USER + userSession.ID;
+        let url = Site.init().USER + userSession.ID + "?token_key=" + Site.init().TOKEN_KEY
         
         Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
@@ -155,7 +155,7 @@ class PaymentViewController: NoBarViewController {
         
         self.loadingView.isHidden = false
         
-        let url = Site.init().CART + userSession.ID
+        let url = Site.init().CART + userSession.ID + "?token_key=" + Site.init().TOKEN_KEY
         
         Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
@@ -236,7 +236,9 @@ class PaymentViewController: NoBarViewController {
         self.loadingView.isHidden = false
         
         let url = Site.init().CHANGE_CART_SHIPPING + userSession.ID + "/" + method;
-        let parameters: [String: AnyObject] = [:]
+        let parameters: [String: AnyObject] = [
+            "token_key": Site.init().TOKEN_KEY as AnyObject
+        ]
         
         Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in
@@ -271,7 +273,9 @@ class PaymentViewController: NoBarViewController {
         let coupon: String = (self.couponField.text?.isEmpty)! ? "null" : self.couponField.text!
         
         let url = Site.init().UPDATE_COUPON + userSession.ID + "/" + coupon;
-        let parameters: [String: AnyObject] = [:]
+        let parameters: [String: AnyObject] = [
+            "token_key": Site.init().TOKEN_KEY as AnyObject
+        ]
         
         Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in
@@ -341,6 +345,8 @@ class PaymentViewController: NoBarViewController {
         if (paymentMethod != "web") {
             parameters["payment_method"] = paymentMethod as AnyObject
         }
+        
+        parameters["token_key"] = Site.init().TOKEN_KEY as AnyObject
         
         Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in
@@ -539,6 +545,7 @@ extension PaymentViewController: UITableViewDelegate, UITableViewDataSource {
 //        if (!userSession.logged()) {
 //            parameters["allow_guest"] = 1 as AnyObject
 //        }
+//        parameters["token_key"] = Site.init().TOKEN_KEY as AnyObject
 //
 //        Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
 //            (response:DataResponse) in

@@ -85,7 +85,7 @@ class FilterViewController: UIViewController {
 //
 //        self.categoryActivity.isHidden = false
 //
-//        let url = Site.init().CATEGORIES + "?hide_empty=1&order_by=menu_order";
+    //        let url = Site.init().CATEGORIES + "?hide_empty=1&order_by=menu_order" + Site.init().TOKEN_KEY_APPEND;
 //
 //        Alamofire.request(url).responseJSON { (response) -> Void in
 //            //check if the result has a value
@@ -118,7 +118,7 @@ class FilterViewController: UIViewController {
         
         self.sizeActivity.isHidden = false
         
-        let url = Site.init().ATTRIBUTES + "?name=size";
+        let url = Site.init().ATTRIBUTES + "?name=size" + Site.init().TOKEN_KEY_APPEND;
         
         Alamofire.request(url).responseJSON { (response) -> Void in
             //check if the result has a value

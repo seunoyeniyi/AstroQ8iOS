@@ -252,7 +252,7 @@ class ProductViewController: UIViewController {
         refreshBtn.isHidden = true
         cartActivity.isHidden = false
         
-        let url = Site.init().PRODUCT + productID + "?user_id=" + userSession.ID
+        let url = Site.init().PRODUCT + productID + "?user_id=" + userSession.ID + Site.init().TOKEN_KEY_APPEND
         
         Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
@@ -397,9 +397,10 @@ class ProductViewController: UIViewController {
         
         let parameters: [String: AnyObject] = [
             "rating" : rating as AnyObject,
-            "comment": comment as AnyObject
+            "comment": comment as AnyObject,
+            "token_key": Site.init().TOKEN_KEY as AnyObject
         ]
-   
+        
         
         Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in
@@ -521,7 +522,7 @@ class ProductViewController: UIViewController {
     }
     
     func updateCartNotification() {
-        let url = Site.init().CART + userSession.ID
+        let url = Site.init().CART + userSession.ID + "?token_key=" + Site.init().TOKEN_KEY
         
         Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value

@@ -134,6 +134,8 @@ class SearchViewController: NoBarViewController {
             url += "&size=" + self.selected_size
         }
         
+        url = url + Site.init().TOKEN_KEY_APPEND
+        
         //        print(url)
         
         url = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
@@ -263,7 +265,7 @@ class SearchViewController: NoBarViewController {
     
     
     func updateCartNotification() {
-        let url = Site.init().CART + userSession.ID
+        let url = Site.init().CART + userSession.ID + "?token_key=" + Site.init().TOKEN_KEY
         
         Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value

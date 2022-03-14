@@ -91,7 +91,7 @@ class WishlistViewController: NoBarViewController {
         }
         
         
-        let url = Site.init().WISH_LIST + userSession.ID + "?hide_description=1&show_variation=1";
+        let url = Site.init().WISH_LIST + userSession.ID + "?hide_description=1&show_variation=1" + Site.init().TOKEN_KEY_APPEND;
        
 
         
@@ -216,7 +216,7 @@ class WishlistViewController: NoBarViewController {
     
     
     func updateCartNotification() {
-        let url = Site.init().CART + userSession.ID
+        let url = Site.init().CART + userSession.ID + "?token_key=" + Site.init().TOKEN_KEY
         
         Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value

@@ -16,10 +16,10 @@ class ProfileAddressViewController: UIViewController {
     
     @IBOutlet var fname: UITextField!
     @IBOutlet var lname: UITextField!
-    @IBOutlet var company: UITextField!
+//    @IBOutlet var company: UITextField!
     @IBOutlet var country: UITextField!
     @IBOutlet var state: UITextField!
-    @IBOutlet var postcode: UITextField!
+//    @IBOutlet var postcode: UITextField!
     @IBOutlet var city: UITextField!
     @IBOutlet var address1: UITextField!
     @IBOutlet var address2: UITextField!
@@ -39,7 +39,7 @@ class ProfileAddressViewController: UIViewController {
         if (userSession.logged()) {
             fetchAddress()
         } else {
-            self.view.makeToast("Please login")
+            self.view.makeToast("Please login", position: .top)
             self.dismiss(animated: true, completion: nil)
         }
         
@@ -60,14 +60,14 @@ class ProfileAddressViewController: UIViewController {
     
     func fetchAddress() {
         if (!Connectivity.isConnectedToInternet) {
-            self.view.makeToast("Bad Internet connection!")
+            self.view.makeToast("Bad Internet connection!", position: .top)
             return
         }
         
         
         self.loadingView.isHidden = false
         
-        let url = Site.init().USER + userSession.ID
+        let url = Site.init().USER + userSession.ID + "?token_key=" + Site.init().TOKEN_KEY
         
         Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
@@ -76,11 +76,11 @@ class ProfileAddressViewController: UIViewController {
                 let address = json["shipping_address"]
                 self.fname.text = address["shipping_first_name"].stringValue
                 self.lname.text = address["shipping_last_name"].stringValue
-                self.company.text = address["shipping_company"].stringValue
+//                self.company.text = address["shipping_company"].stringValue
                 self.address1.text = address["shipping_address_1"].stringValue
                 self.address2.text = address["shipping_address_2"].stringValue
                 self.city.text = address["shipping_city"].stringValue
-                self.postcode.text = address["shipping_postcode"].stringValue
+//                self.postcode.text = address["shipping_postcode"].stringValue
                 self.country.text = address["shipping_country"].stringValue
                 self.state.text = address["shipping_state"].stringValue
                 self.phone.text = address["shipping_phone"].stringValue
@@ -88,7 +88,7 @@ class ProfileAddressViewController: UIViewController {
                 self.loadingView.isHidden = true
             } else {
                 //no result
-                self.view.makeToast("Cannot get your account! Try Again")
+                self.view.makeToast("Cannot get your account! Try Again", position: .top)
             }
             //after every thing
             self.loadingView.isHidden = true
@@ -108,11 +108,11 @@ class ProfileAddressViewController: UIViewController {
         let parameters: [String: AnyObject] = [
             "first_name": self.fname.text as AnyObject,
             "last_name": self.lname.text as AnyObject,
-            "company": self.company.text as AnyObject,
+//            "company": self.company.text as AnyObject,
             "country": self.country.text as AnyObject,
             "state": self.state.text as AnyObject,
             "city": self.city.text as AnyObject,
-            "postcode": self.postcode.text as AnyObject,
+//            "postcode": self.postcode.text as AnyObject,
             "address_1": self.address1.text as AnyObject,
             "address_2": self.address2.text as AnyObject,
             "email": self.email.text as AnyObject,
@@ -120,10 +120,12 @@ class ProfileAddressViewController: UIViewController {
             "selected_country": "" as AnyObject, //to avoid empty return
             "selected_state": "" as AnyObject, //to avoid empty return
             "shipping_provider": "" as AnyObject, //to avoid empty return
-            "shipping_provider_cost": "" as AnyObject //to avoid empty return
+            "shipping_provider_cost": "" as AnyObject, //to avoid empty return
+            "token_key": Site.init().TOKEN_KEY as AnyObject
         ]
         
         let url = Site.init().UPDATE_SHIPPING + userSession.ID;
+    
         
         Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in
@@ -131,9 +133,9 @@ class ProfileAddressViewController: UIViewController {
                 let json = JSON(json_result)
                 
                 if (json["code"].stringValue == "saved") {
-                    self.view.makeToast("Address saved.")
+                    self.view.makeToast("Address saved.", position: .top)
                 } else {
-                    self.view.makeToast("Address not saved")
+                    self.view.makeToast("Address not saved", position: .top)
                 }
                 
             } else {
@@ -148,40 +150,38 @@ class ProfileAddressViewController: UIViewController {
     
     
     @IBAction func saveTapped(_ sender: Any) {
+        view.endEditing(true)
+        
         if (self.fname.text?.isEmpty)! {
-            self.view.makeToast("First name is required")
+            self.view.makeToast("First name is required", position: .top)
             return
         }
         if (self.lname.text?.isEmpty)! {
-            self.view.makeToast("Last name is required")
+            self.view.makeToast("Last name is required", position: .top)
             return
         }
         if (self.address1.text?.isEmpty)! {
-            self.view.makeToast("Address is required")
-            return
-        }
-        if (self.address2.text?.isEmpty)! {
-            self.view.makeToast("Address is required")
+            self.view.makeToast("Address is required", position: .top)
             return
         }
         if (self.city.text?.isEmpty)! {
-            self.view.makeToast("City is required")
+            self.view.makeToast("City is required", position: .top)
             return
         }
         if (self.country.text?.isEmpty)! {
-            self.view.makeToast("Country is required")
+            self.view.makeToast("Country is required", position: .top)
             return
         }
         if (self.state.text?.isEmpty)! {
-            self.view.makeToast("State is required")
+            self.view.makeToast("State is required", position: .top)
             return
         }
         if (self.phone.text?.isEmpty)! {
-            self.view.makeToast("Phone number is required")
+            self.view.makeToast("Phone number is required", position: .top)
             return
         }
         if (self.email.text?.isEmpty)! {
-            self.view.makeToast("Email is required")
+            self.view.makeToast("Email is required", position: .top)
             return
         }
         

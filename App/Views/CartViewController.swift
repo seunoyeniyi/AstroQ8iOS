@@ -135,7 +135,7 @@ class CartViewController: NoBarViewController {
         self.tryAgainBtn.isHidden = true
         
         
-        let url = Site.init().CART + userSession.ID
+        let url = Site.init().CART + userSession.ID + "?token_key=" + Site.init().TOKEN_KEY
         
         let urlRequest = URLRequest(url: URL(string: url)!)
         URLCache.shared.removeCachedResponse(for: urlRequest)
@@ -291,7 +291,7 @@ class CartViewController: NoBarViewController {
     }
     
     func updateCartNotification() {
-        let url = Site.init().CART + userSession.ID
+        let url = Site.init().CART + userSession.ID + "?token_key=" + Site.init().TOKEN_KEY
         
         Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
@@ -335,7 +335,9 @@ class CartViewController: NoBarViewController {
         let coupon: String = (self.couponTextField.text?.isEmpty)! ? "null" : self.couponTextField.text!
         
         let url = Site.init().UPDATE_COUPON + userSession.ID + "/" + coupon;
-        let parameters: [String: AnyObject] = [:]
+        let parameters: [String: AnyObject] = [
+            "token_key": Site.init().TOKEN_KEY as AnyObject
+        ]
         
         Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in

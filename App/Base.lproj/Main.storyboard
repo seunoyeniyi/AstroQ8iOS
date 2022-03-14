@@ -234,8 +234,8 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xk3-dN-Lky" userLabel="Banner Shimmer" customClass="ShimmerViewContainer" customModule="AstroQ8" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="410" width="375" height="180"/>
+                                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xk3-dN-Lky" userLabel="Banner Shimmer" customClass="ShimmerViewContainer" customModule="AstroQ8" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wR4-m8-N8F" customClass="ShimmerView" customModule="AstroQ8" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="206" height="170"/>
@@ -637,8 +637,8 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQe-0o-Igm" userLabel="Products Shimmer" customClass="ShimmerViewContainer" customModule="AstroQ8" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="810" width="375" height="500"/>
+                                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZQe-0o-Igm" userLabel="Products Shimmer" customClass="ShimmerViewContainer" customModule="AstroQ8" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="310" width="375" height="500"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5j4-Ix-RY7" userLabel="Card">
                                                         <rect key="frame" x="10" y="0.0" width="170" height="209"/>
@@ -844,6 +844,7 @@
                                             <constraint firstItem="PB5-um-uem" firstAttribute="leading" secondItem="qAq-4D-uUO" secondAttribute="leading" id="Doa-U2-V5g"/>
                                             <constraint firstAttribute="trailing" secondItem="PB5-um-uem" secondAttribute="trailing" id="Dvx-X3-l3E"/>
                                             <constraint firstAttribute="trailing" secondItem="hYi-T0-QZ9" secondAttribute="trailing" id="Evh-mJ-gT6"/>
+                                            <constraint firstItem="ZQe-0o-Igm" firstAttribute="top" secondItem="Vqz-lC-kCh" secondAttribute="bottom" constant="20" id="J8i-k8-gev"/>
                                             <constraint firstItem="6N6-H6-eWA" firstAttribute="leading" secondItem="qAq-4D-uUO" secondAttribute="leading" id="KPQ-gy-M3Z"/>
                                             <constraint firstItem="Sal-lK-xW6" firstAttribute="top" secondItem="Vqz-lC-kCh" secondAttribute="bottom" constant="20" id="NRA-NL-sBX"/>
                                             <constraint firstItem="O9k-bO-HxO" firstAttribute="top" secondItem="lao-2l-nIx" secondAttribute="bottom" id="PK3-Ev-hVU"/>
@@ -866,7 +867,6 @@
                                             <constraint firstAttribute="trailing" secondItem="fah-uk-ECL" secondAttribute="trailing" id="vAz-SC-F9T"/>
                                             <constraint firstAttribute="trailing" secondItem="Xk3-dN-Lky" secondAttribute="trailing" id="vm3-kM-YPy"/>
                                             <constraint firstItem="O9k-bO-HxO" firstAttribute="leading" secondItem="qAq-4D-uUO" secondAttribute="leading" id="wRr-4l-RaI"/>
-                                            <constraint firstItem="ZQe-0o-Igm" firstAttribute="top" secondItem="Vqz-lC-kCh" secondAttribute="bottom" constant="20" id="xA4-dP-Q3O"/>
                                             <constraint firstAttribute="trailing" secondItem="Sal-lK-xW6" secondAttribute="trailing" constant="10" id="y0c-86-cQx"/>
                                         </constraints>
                                     </view>
@@ -994,12 +994,12 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDx-Fn-Vax">
-                                        <rect key="frame" x="110" y="100.33333333333333" width="255" height="20"/>
+                                        <rect key="frame" x="110" y="100.66666666666667" width="255" height="20"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbg-Vg-96G" customClass="CustomButton" customModule="AstroQ8" customModuleProvider="target">
-                                        <rect key="frame" x="110" y="122.33333333333331" width="255" height="28"/>
+                                        <rect key="frame" x="110" y="122.66666666666669" width="255" height="28"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="Account Settings">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>

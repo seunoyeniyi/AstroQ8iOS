@@ -12,6 +12,8 @@ class Site {
     public final let PROTOCOL: String = "https";
     public final let DOMAIN: String =  "astroq8.com"; //"192.168.43.11"; // "192.168.43.223"; //"10.0.2.2"; //
     public final let ADDRESS: String
+    public final let TOKEN_KEY: String  = "OyO3muQ98b1uEHzQVg4X4trpFcrx3SxFFZIWXHAOz6HWZBUoLe"; //do not share - remove this key before sharing anyone.
+    public final let TOKEN_KEY_APPEND: String
     public final let INFO: String
     public final let CART: String
     public final let ADD_TO_CART: String
@@ -50,6 +52,7 @@ class Site {
     
     init() {
         ADDRESS = PROTOCOL + "://" + DOMAIN + "/";
+        TOKEN_KEY_APPEND = "&token_key=" + TOKEN_KEY;
         CART = ADDRESS + "wp-json/skye-api/v2/cart/"; //v2
         ADD_TO_CART = ADDRESS + "wp-json/skye-api/v1/add-to-cart/";
         PRODUCTS = ADDRESS + "wp-json/skye-api/v1/products/";

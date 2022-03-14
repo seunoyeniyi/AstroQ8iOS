@@ -62,7 +62,8 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
         let url: String = Site.init().ADD_DEVICE + userID
         
         let parameters: [String: AnyObject] = [
-            "device" : fcmToken as AnyObject
+            "device" : fcmToken as AnyObject,
+            "token_key": Site.init().TOKEN_KEY as AnyObject
         ]
         
         Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {

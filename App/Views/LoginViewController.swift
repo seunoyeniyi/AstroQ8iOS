@@ -71,11 +71,14 @@ class LoginViewController: UIViewController {
         let url: String = Site.init().LOGIN;
         var parameters: [String: AnyObject] = [
             "username" : username as AnyObject,
-            "password" : password as AnyObject
+            "password" : password as AnyObject,
+            "token_key": Site.init().TOKEN_KEY as AnyObject
         ]
         if (userSession.ID != "0") { //ID maybe hash code for anonymoush user
             parameters["replace_cart_user"] = userSession.ID as AnyObject
         }
+        
+        parameters["token_key"] = Site.init().TOKEN_KEY as AnyObject
         
         Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in
