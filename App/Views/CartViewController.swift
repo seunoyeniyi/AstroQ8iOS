@@ -140,9 +140,9 @@ class CartViewController: NoBarViewController {
         let urlRequest = URLRequest(url: URL(string: url)!)
         URLCache.shared.removeCachedResponse(for: urlRequest)
         
-        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+        Alamofire.Session.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
 //                print(json)
                 if (json["items"].exists()) {
@@ -293,9 +293,9 @@ class CartViewController: NoBarViewController {
     func updateCartNotification() {
         let url = Site.init().CART + userSession.ID + "?token_key=" + Site.init().TOKEN_KEY
         
-        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+        Alamofire.Session.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
                 if (json["contents_count"].intValue > 0) {
                     self.cartNotification.text = json["contents_count"].stringValue
@@ -339,9 +339,9 @@ class CartViewController: NoBarViewController {
             "token_key": Site.init().TOKEN_KEY as AnyObject
         ]
         
-        Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
+        Alamofire.Session.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
                 if json["has_coupon"].stringValue == "true" {
                     let subtotal = json["subtotal"].doubleValue

@@ -128,9 +128,9 @@ class ArchiveViewController: NoBarViewController {
 //        print(url)
         
         url = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+        Alamofire.Session.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 
                     let json = JSON(json_result)
                 let results = json["results"] //array
@@ -276,9 +276,9 @@ class ArchiveViewController: NoBarViewController {
     func updateCartNotification() {
         let url = Site.init().CART + userSession.ID + "?token_key=" + Site.init().TOKEN_KEY
         
-        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+        Alamofire.Session.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
                 if (json["contents_count"].intValue > 0) {
                     self.cartNotification.text = json["contents_count"].stringValue

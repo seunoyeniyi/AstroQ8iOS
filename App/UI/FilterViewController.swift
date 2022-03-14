@@ -87,9 +87,9 @@ class FilterViewController: UIViewController {
 //
     //        let url = Site.init().CATEGORIES + "?hide_empty=1&order_by=menu_order" + Site.init().TOKEN_KEY_APPEND;
 //
-//        Alamofire.request(url).responseJSON { (response) -> Void in
+//        AF.request(url).responseJSON { (response) -> Void in
 //            //check if the result has a value
-//            if let json_result = response.result.value {
+//            if let json_result = response.value {
 //
 //                    let json = JSON(json_result)
 //
@@ -120,9 +120,9 @@ class FilterViewController: UIViewController {
         
         let url = Site.init().ATTRIBUTES + "?name=size" + Site.init().TOKEN_KEY_APPEND;
         
-        Alamofire.request(url).responseJSON { (response) -> Void in
+        AF.request(url).responseJSON { (response) -> Void in
             //check if the result has a value
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 
                 let json = JSON(json_result)
                 let terms = json["terms"]

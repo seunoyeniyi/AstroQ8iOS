@@ -254,9 +254,9 @@ class ProductViewController: UIViewController {
         
         let url = Site.init().PRODUCT + productID + "?user_id=" + userSession.ID + Site.init().TOKEN_KEY_APPEND
         
-        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+        Alamofire.Session.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 
                     let json = JSON(json_result)
                     
@@ -402,9 +402,9 @@ class ProductViewController: UIViewController {
         ]
         
         
-        Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
+        Alamofire.Session.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
                 
                 if json["status"].stringValue == "success" {
@@ -524,9 +524,9 @@ class ProductViewController: UIViewController {
     func updateCartNotification() {
         let url = Site.init().CART + userSession.ID + "?token_key=" + Site.init().TOKEN_KEY
         
-        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+        Alamofire.Session.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
                 if (json["contents_count"].intValue > 0) {
                     self.cartNotification.text = json["contents_count"].stringValue

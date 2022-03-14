@@ -69,9 +69,9 @@ class ProfileAddressViewController: UIViewController {
         
         let url = Site.init().USER + userSession.ID + "?token_key=" + Site.init().TOKEN_KEY
         
-        Alamofire.SessionManager.default.requestWithoutCache(url).responseJSON { (response) -> Void in
+        Alamofire.Session.default.requestWithoutCache(url).responseJSON { (response) -> Void in
             //check if the result has a value
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
                 let address = json["shipping_address"]
                 self.fname.text = address["shipping_first_name"].stringValue
@@ -127,9 +127,9 @@ class ProfileAddressViewController: UIViewController {
         let url = Site.init().UPDATE_SHIPPING + userSession.ID;
     
         
-        Alamofire.SessionManager.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
+        Alamofire.Session.default.requestWithoutCache(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {
             (response:DataResponse) in
-            if let json_result = response.result.value {
+            if let json_result = response.value {
                 let json = JSON(json_result)
                 
                 if (json["code"].stringValue == "saved") {
